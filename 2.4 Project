@@ -1,0 +1,20 @@
+from datetime import datetime
+
+print("Cambel8058 Spreadsheet Automation Menu")
+
+menu_options = [
+    "1. Input Data",
+    "2. View Current Data",
+    "3. Generate Report"
+]
+
+for option in menu_options:
+    print(option)
+
+choice = input("Enter option number (1-3): ")
+
+if choice not in ["1", "2", "3"]:
+    print("Error: Invalid choice selected.")
+else:
+    print("You selected option:", choice)
+    print("The time and date is", str(datetime.now()))
