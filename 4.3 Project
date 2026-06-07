@@ -1,0 +1,56 @@
+# insertData: writes data to a CSV file
+def insertData(path, data):
+    try:
+        with open(path, "a", newline='') as f:  
+            f.write(data + "\n")               
+    except Exception as e:
+        print("Error writing to file:", e)
+
+
+# viewData: displays the file path and contents of the CSV file
+def viewData(path):
+    try:
+        with open(path, "r") as f:              
+            print("Reading from:", path)
+            print(f.read())
+    except Exception as e:
+        print("Error reading file:", e)
+
+
+# getInput: collects user input and saves it to ZooData.csv
+def getInput():
+    path = "ZooData.csv"
+
+    while True:
+        animal = input("Enter animal name (or 'done' to stop): ")
+        if animal.lower() == "done":
+            break
+
+        count = input("Enter number of animals: ")
+        csv_line = f"{animal},{count}"
+
+        try:
+            insertData(path, csv_line)
+            print(f"The following data was saved at current date/time: {csv_line}.")
+        except:
+            print("Error saving data.")
+
+
+# main menu used for flow optons
+def main():
+    while True:
+        print("\n1. Enter Zoo Data")
+        print("2. View Zoo Data")
+        print("3. Exit")
+
+        choice = input("Enter choice: ")
+
+        if choice == "1":
+            getInput()
+        elif choice == "2":
+            viewData("ZooData.csv")
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice.")
+main()
